@@ -71,6 +71,54 @@ Comunidad Oficial de Conejo Malo is a global fan community created to keep fans 
 </div>
 
 <style>
+  .hero {
+  background: linear-gradient(135deg, #2b0036, #7a005c);
+  padding: 120px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  opacity: 0.85;
+  margin-bottom: 40px;
+}
+
+.cta-button {
+  background: #ff0055;
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 8px 25px rgba(255, 0, 85, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255, 0, 85, 0.6);
+}
   #lang-wrapper {
     position: fixed;
     bottom: 18px;
