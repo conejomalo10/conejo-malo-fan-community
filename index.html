@@ -9,7 +9,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-font-family: 'Segoe UI', sans-serif;
+font-family:'Segoe UI',sans-serif;
 background:#0c0c12;
 color:white;
 line-height:1.6;
@@ -27,10 +27,14 @@ padding:150px 20px;
 text-align:center;
 }
 
-header h1{
-font-size:48px;
-margin-bottom:15px;
-text-shadow:0 0 25px rgba(255,0,170,0.6);
+.english-title{
+font-size:22px;
+font-weight:500;
+margin-top:10px;
+margin-bottom:20px;
+opacity:0.85;
+letter-spacing:1px;
+color:#ffffffcc;
 }
 
 .subtitle{
@@ -51,13 +55,9 @@ box-shadow:0 15px 40px rgba(255,0,150,0.5);
 transition:0.4s;
 }
 
-.cta:hover{
-transform:translateY(-5px);
-}
+.cta:hover{transform:translateY(-5px);}
 
-section{
-padding:100px 0;
-}
+section{padding:100px 0;}
 
 section h2{
 text-align:center;
@@ -86,30 +86,18 @@ transform:translateY(-10px);
 border-color:#ff4da6;
 }
 
-.card h3{
-margin-bottom:20px;
-font-size:24px;
-}
+.card h3{margin-bottom:20px;font-size:24px;}
 
-.card ul{
-list-style:none;
-margin-top:15px;
-}
+.card ul{list-style:none;margin-top:15px;}
 
-.card li{
-margin:10px 0;
-opacity:0.9;
-}
+.card li{margin:10px 0;opacity:0.9;}
 
 .highlight{
 border:1px solid #ff4da6;
 box-shadow:0 0 35px rgba(255,0,150,0.5);
 }
 
-form{
-max-width:650px;
-margin:auto;
-}
+form{max-width:650px;margin:auto;}
 
 input,textarea{
 width:100%;
@@ -135,16 +123,9 @@ cursor:pointer;
 transition:0.3s;
 }
 
-button:hover{
-transform:translateY(-3px);
-}
+button:hover{transform:translateY(-3px);}
 
-#status{
-text-align:center;
-margin-top:20px;
-font-size:14px;
-opacity:0.9;
-}
+#status{text-align:center;margin-top:20px;font-size:14px;opacity:0.9;}
 
 footer{
 text-align:center;
@@ -160,7 +141,7 @@ border-top:1px solid rgba(255,255,255,0.1);
 
 <header>
 <div class="container">
-<h1>Comunidad Oficial de Conejo Malo</h1>
+<h2 class="english-title">Bad Bunny Global Fan Community</h2>
 <p class="subtitle">
 Premium Global Fan Membership & Official PR Enquiries Platform
 </p>
@@ -223,27 +204,50 @@ Premium Global Fan Membership & Official PR Enquiries Platform
 </section>
 
 <footer>
-© 2026 Comunidad Oficial de Conejo Malo – Fan Platform (All rights reserved to their respective owners)
+© 2026 Comunidad Oficial de Conejo Malo – Global Fan Platform (All rights reserved to their respective owners)
 </footer>
 
-<script>
-const form = document.getElementById("contactForm");
-const status = document.getElementById("status");
+<!-- LANGUAGE SELECTOR -->
+<div style="position:fixed;bottom:20px;right:20px;">
+<select id="lang-select" style="padding:10px 15px;border-radius:30px;background:#111;color:white;border:1px solid #333;">
+<option value="">🌍 Language</option>
+<option value="en">English</option>
+<option value="es">Español</option>
+<option value="fr">Français</option>
+<option value="de">Deutsch</option>
+<option value="nl">Dutch</option>
+<option value="pt">Português</option>
+<option value="it">Italiano</option>
+<option value="zh-CN">Chinese</option>
+<option value="ja">Japanese</option>
+<option value="ar">Arabic</option>
+</select>
+</div>
 
-form.addEventListener("submit", async function(e){
+<script>
+const form=document.getElementById("contactForm");
+const status=document.getElementById("status");
+
+form.addEventListener("submit",async function(e){
 e.preventDefault();
 status.innerText="Processing request...";
 
-const data = new FormData(form);
+const data=new FormData(form);
 
-const response = await fetch("/api/contact",{
-method:"POST",
-body:data
-});
-
-const text = await response.text();
+try{
+const response=await fetch("/api/contact",{method:"POST",body:data});
+const text=await response.text();
 status.innerText=text;
 form.reset();
+}catch(error){
+status.innerText="Submission failed. Please try again.";
+}
+});
+
+document.getElementById("lang-select").addEventListener("change",function(){
+if(this.value){
+window.location.href="https://translate.google.com/translate?sl=auto&tl="+this.value+"&u="+encodeURIComponent(window.location.href);
+}
 });
 </script>
 
