@@ -44,71 +44,32 @@ from{transform:translateY(0px) scale(1);}
 to{transform:translateY(-80px) scale(1.1);}
 }
 
-/* Hero */
-header{
-height:100vh;
-display:flex;align-items:center;justify-content:center;
-text-align:center;padding:40px;
-background:
-linear-gradient(rgba(10,10,20,0.65),rgba(10,10,20,0.85)),
-url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=3840') center/cover no-repeat;
-background-attachment:fixed;
-}
-.main-title{
-font-family:'Playfair Display',serif;
-font-size:56px;font-weight:700;
-margin-bottom:20px;
-background:linear-gradient(90deg,#ffffff,#ffd700,#ff4da6);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-.global-title{font-size:28px;margin-bottom:20px;opacity:0.9;}
-.hero-subtitle{font-size:20px;margin-bottom:50px;opacity:0.85;}
-.cta{
-padding:18px 60px;border-radius:50px;
-background:linear-gradient(45deg,#ff0077,#ff4da6);
-color:white;text-decoration:none;font-weight:700;
-box-shadow:0 25px 60px rgba(255,0,150,0.6);
-transition:0.3s;
-}
-.cta:hover{transform:translateY(-5px);}
-
 /* Sections */
 section{padding:100px 20px;text-align:center;}
-.container{max-width:1200px;margin:auto;}
 h2{font-size:36px;margin-bottom:40px;}
-.about p{max-width:800px;margin:auto;line-height:1.8;opacity:0.85;}
-
-/* Cards */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-}
-.card{
-background:#151522;padding:40px;
-border-radius:20px;
-box-shadow:0 20px 60px rgba(0,0,0,0.6);
-transition:0.3s;
-}
-.card:hover{transform:translateY(-10px);}
-.highlight{background:linear-gradient(145deg,#1f0033,#330066);}
 
 /* Forms */
-form{max-width:600px;margin:40px auto;}
-input, textarea{
-width:100%;padding:15px;margin-bottom:20px;
-border:none;border-radius:10px;
+input{
+width:100%;max-width:400px;padding:15px;margin:10px auto;
+display:block;border:none;border-radius:10px;
 background:#1f1f2e;color:white;
 }
 button{
-width:100%;padding:15px;border:none;
-border-radius:40px;
+width:100%;max-width:400px;padding:15px;margin:10px auto;
+display:block;border:none;border-radius:40px;
 background:linear-gradient(45deg,#ff0077,#ff4da6);
 color:white;font-weight:600;cursor:pointer;
 }
 
-/* Footer */
+/* Dashboard */
+#dashboard{
+display:none;
+padding:100px 20px;
+text-align:center;
+}
+#dashboard h2{margin-bottom:20px;}
+#userEmail{margin-bottom:30px;font-size:18px;opacity:0.85;}
+
 footer{
 padding:40px;background:#0a0a10;
 text-align:center;font-size:14px;opacity:0.7;
@@ -123,23 +84,20 @@ text-align:center;font-size:14px;opacity:0.7;
 <div class="orb orb2"></div>
 </div>
 
-<header>
-<div>
-<h1 class="main-title">Comunidad Oficial de Conejo Malo</h1>
-<h2 class="global-title">Bad Bunny Global Fan Community</h2>
-<p class="hero-subtitle">Premium Global Fan Membership & Official PR Enquiries Platform</p>
-<a href="#auth" class="cta">Join Community</a>
-</div>
-</header>
-
 <section id="auth">
 <h2>Member Login / Register</h2>
 
-<input id="authEmail" type="email" placeholder="Enter Email">
-<input id="authPassword" type="password" placeholder="Enter Password">
+<input id="authEmail" type="email" placeholder="Enter Email" required>
+<input id="authPassword" type="password" placeholder="Enter Password (min 6 characters)" required>
 <button id="registerBtn">Register</button>
 <button id="loginBtn">Login</button>
+</section>
 
+<!-- MEMBER DASHBOARD -->
+<section id="dashboard">
+<h2>Member Dashboard</h2>
+<p id="userEmail"></p>
+<button id="logoutBtn">Logout</button>
 </section>
 
 <footer>
@@ -149,8 +107,13 @@ text-align:center;font-size:14px;opacity:0.7;
 <!-- FIREBASE AUTH SYSTEM -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } 
-from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
+import { 
+  getAuth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
 const firebaseConfig = {
 apiKey: "AIzaSyDpFAL7wX__ee1bmbr25A81IBuWEnpq970",
@@ -164,6 +127,11 @@ appId: "1:886224291739:web:f54c336ac7ea4e3512c33e"
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+const authSection = document.getElementById("auth");
+const dashboard = document.getElementById("dashboard");
+const userEmailDisplay = document.getElementById("userEmail");
+
+// REGISTER
 document.getElementById("registerBtn").addEventListener("click", () => {
 const email = document.getElementById("authEmail").value;
 const password = document.getElementById("authPassword").value;
@@ -173,6 +141,7 @@ createUserWithEmailAndPassword(auth, email, password)
 .catch(error => alert(error.message));
 });
 
+// LOGIN
 document.getElementById("loginBtn").addEventListener("click", () => {
 const email = document.getElementById("authEmail").value;
 const password = document.getElementById("authPassword").value;
@@ -180,6 +149,25 @@ const password = document.getElementById("authPassword").value;
 signInWithEmailAndPassword(auth, email, password)
 .then(() => alert("Login successful ✅"))
 .catch(error => alert(error.message));
+});
+
+// AUTH STATE LISTENER
+onAuthStateChanged(auth, (user) => {
+if (user) {
+authSection.style.display = "none";
+dashboard.style.display = "block";
+userEmailDisplay.textContent = "Welcome, " + user.email;
+} else {
+authSection.style.display = "block";
+dashboard.style.display = "none";
+}
+});
+
+// LOGOUT
+document.getElementById("logoutBtn").addEventListener("click", () => {
+signOut(auth).then(() => {
+alert("Logged out successfully ✅");
+});
 });
 </script>
 
