@@ -1,200 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Comunidad Oficial de Conejo Malo | Global Fan Community</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comunidad Oficial de Conejo Malo | Official Fan & PR Platform</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0d0d0d;
-      color: white;
-      line-height: 1.6;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
 
-    header {
-      background: linear-gradient(135deg, #2b0036, #7a005c);
-      padding: 100px 20px;
-      text-align: center;
-    }
+body{
+font-family: 'Segoe UI', sans-serif;
+background:#0c0c12;
+color:white;
+line-height:1.6;
+}
 
-    header h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
 
-    .subtitle {
-      opacity: 0.85;
-      margin-bottom: 30px;
-      font-size: 18px;
-    }
+header{
+background:linear-gradient(135deg,#2b0036,#0c0c12);
+padding:150px 20px;
+text-align:center;
+}
 
-    .cta-button {
-      background: #ff0055;
-      color: white;
-      padding: 14px 35px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s ease;
-      display: inline-block;
-    }
+header h1{
+font-size:48px;
+margin-bottom:15px;
+text-shadow:0 0 25px rgba(255,0,170,0.6);
+}
 
-    .cta-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4);
-    }
+.subtitle{
+font-size:20px;
+opacity:0.85;
+margin-bottom:35px;
+}
 
-    section {
-      padding: 70px 20px;
-      text-align: center;
-    }
+.cta{
+display:inline-block;
+padding:16px 45px;
+border-radius:50px;
+background:linear-gradient(45deg,#ff0077,#ff4da6);
+text-decoration:none;
+color:white;
+font-weight:bold;
+box-shadow:0 15px 40px rgba(255,0,150,0.5);
+transition:0.4s;
+}
 
-    section h2 {
-      font-size: 28px;
-      margin-bottom: 30px;
-      color: #ff0055;
-    }
+.cta:hover{
+transform:translateY(-5px);
+}
 
-    .about p {
-      max-width: 700px;
-      margin: 0 auto 20px auto;
-      opacity: 0.9;
-    }
+section{
+padding:100px 0;
+}
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
+section h2{
+text-align:center;
+margin-bottom:60px;
+font-size:34px;
+color:#ff4da6;
+}
 
-    li {
-      margin: 10px 0;
-      font-size: 16px;
-    }
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:40px;
+}
 
-    form {
-      max-width: 500px;
-      margin: 0 auto;
-    }
+.card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
+border-radius:25px;
+padding:40px;
+backdrop-filter:blur(15px);
+transition:0.4s;
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border: none;
-      border-radius: 8px;
-    }
+.card:hover{
+transform:translateY(-10px);
+border-color:#ff4da6;
+}
 
-    button {
-      background: #ff0055;
-      color: white;
-      padding: 12px 30px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-    }
+.card h3{
+margin-bottom:20px;
+font-size:24px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      opacity: 0.7;
-    }
+.card ul{
+list-style:none;
+margin-top:15px;
+}
 
-    #lang-wrapper {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-    }
+.card li{
+margin:10px 0;
+opacity:0.9;
+}
 
-    #lang-select {
-      padding: 8px 12px;
-      border-radius: 20px;
-      border: none;
-      background: #111;
-      color: white;
-    }
-  </style>
+.highlight{
+border:1px solid #ff4da6;
+box-shadow:0 0 35px rgba(255,0,150,0.5);
+}
+
+form{
+max-width:650px;
+margin:auto;
+}
+
+input,textarea{
+width:100%;
+padding:15px;
+margin-bottom:20px;
+border:none;
+border-radius:12px;
+background:#111;
+color:white;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:50px;
+background:linear-gradient(45deg,#ff0077,#ff4da6);
+color:white;
+font-weight:bold;
+font-size:16px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:translateY(-3px);
+}
+
+#status{
+text-align:center;
+margin-top:20px;
+font-size:14px;
+opacity:0.9;
+}
+
+footer{
+text-align:center;
+padding:50px 20px;
+font-size:14px;
+opacity:0.6;
+border-top:1px solid rgba(255,255,255,0.1);
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Comunidad Oficial de Conejo Malo</h1>
-    <p class="subtitle">A Global Fan Community of Bad Bunny</p>
-    <a href="#contact" class="cta-button">Contact Admin</a>
-  </header>
+<header>
+<div class="container">
+<h1>Comunidad Oficial de Conejo Malo</h1>
+<p class="subtitle">
+Premium Global Fan Membership & Official PR Enquiries Platform
+</p>
+<a href="#membership" class="cta">Explore Membership</a>
+</div>
+</header>
 
-  <section class="about">
-    <h2>About the Community</h2>
-    <p>
-      Comunidad Oficial de Conejo Malo is a global fan community created to celebrate the music, culture, and worldwide impact of Bad Bunny.
-    </p>
-    <p>
-      ⚠ Disclaimer: This website is a fan community platform, created to celebrate and connect fans globally. All rights reserved to their respective owners.
-    </p>
-  </section>
+<section id="membership">
+<div class="container">
+<h2>Membership Access</h2>
 
-  <section>
-    <h2>Shows & Tour Updates</h2>
-    <ul>
-      <li>📍 Asia – Coming Soon</li>
-      <li>📍 Europe – Coming Soon</li>
-      <li>📍 Africa – To Be Announced</li>
-    </ul>
-  </section>
+<div class="grid">
 
-  <section>
-    <h2>VIP / VVIP Ticket Enquiries</h2>
-    <ul>
-      <li>🎟 Regular Tickets</li>
-      <li>💎 VIP Access</li>
-      <li>👑 VVIP Experience</li>
-    </ul>
-    <p>Handled by authorized PR / management.</p>
-  </section>
+<div class="card">
+<h3>Global Member</h3>
+<ul>
+<li>✔ Tour Announcements</li>
+<li>✔ Global Community Access</li>
+<li>✔ Monthly Newsletter</li>
+</ul>
+</div>
 
-  <section id="contact">
-    <h2>Contact Admin / PR Team</h2>
-    <form>
-      <input placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea placeholder="Your message"></textarea>
-      <button>Send</button>
-    </form>
-  </section>
+<div class="card highlight">
+<h3>VIP Member</h3>
+<ul>
+<li>✔ Priority Ticket Alerts</li>
+<li>✔ Exclusive Content Drops</li>
+<li>✔ Early Event Notifications</li>
+<li>✔ Direct PR Update Access</li>
+</ul>
+</div>
 
-  <footer>
-    <p>© 2026 Comunidad Oficial de Conejo Malo – Fan Community</p>
-  </footer>
+<div class="card">
+<h3>VVIP Executive</h3>
+<ul>
+<li>✔ Concierge-Level Updates</li>
+<li>✔ Special Access Notifications</li>
+<li>✔ Premium Event Alerts</li>
+<li>✔ Management-Level Enquiries</li>
+</ul>
+</div>
 
-  <div id="lang-wrapper">
-    <select id="lang-select">
-      <option value="">🌍 Language</option>
-      <option value="en">English</option>
-      <option value="es">Español</option>
-      <option value="fr">Français</option>
-      <option value="pt">Português</option>
-      <option value="de">Deutsch</option>
-      <option value="it">Italiano</option>
-      <option value="ar">العربية</option>
-    </select>
-  </div>
+</div>
+</div>
+</section>
 
-  <script>
-    document.getElementById("lang-select").addEventListener("change", function () {
-      if (this.value) {
-        const url =
-          "https://translate.google.com/translate?sl=auto&tl=" +
-          this.value +
-          "&u=" +
-          encodeURIComponent(window.location.href);
-        window.location.href = url;
-      }
-    });
-  </script>
+<section>
+<div class="container">
+<h2>Official PR / VIP Enquiries</h2>
+
+<form id="contactForm">
+<input name="name" placeholder="Full Name" required>
+<input name="email" type="email" placeholder="Email Address" required>
+<textarea name="message" placeholder="Your enquiry details" required></textarea>
+<button type="submit">Submit Request</button>
+<div id="status"></div>
+</form>
+
+</div>
+</section>
+
+<footer>
+© 2026 Comunidad Oficial de Conejo Malo – Fan Platform (All rights reserved to their respective owners)
+</footer>
+
+<script>
+const form = document.getElementById("contactForm");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", async function(e){
+e.preventDefault();
+status.innerText="Processing request...";
+
+const data = new FormData(form);
+
+const response = await fetch("/api/contact",{
+method:"POST",
+body:data
+});
+
+const text = await response.text();
+status.innerText=text;
+form.reset();
+});
+</script>
 
 </body>
 </html>
